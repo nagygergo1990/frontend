@@ -1,0 +1,61 @@
+<p-table
+  #dt
+  [(selection)]="selectedData"
+  [columns]="tableColumns"
+  [globalFilterFields]="tableColumns['fields']"
+  [globalFilterFields]="tableColumns"
+  [paginator]="true"
+  [rowHover]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [value]="data"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  dataKey="id"
+  responsiveLayout="scroll"
+>
+  <ng-template pTemplate="caption"> </ng-template>
+
+  <ng-template let-columns pTemplate="header">
+    <tr>
+      <th style="width: 3rem">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+
+      <th
+        *ngFor="let columns of tableColumns"
+        pSortableColumn="{{ tableColumns.field }}"
+      >
+        {{ columns.header }}
+        <p-sortIcon field="{{ columns.field }}"></p-sortIcon>
+      </th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+
+  <ng-template let-columns="columns" let-student pTemplate="body">
+    <tr>
+      <td>
+        <p-tableCheckbox [value]="student"></p-tableCheckbox>
+      </td>
+      <td *ngFor="let columns of tableColumns">
+        {{ student[columns.field] }}
+      </td>
+      <td>
+        <p-toast />
+        <p-confirmdialog />
+        <p-button
+          (click)="edit($event, student)"
+          icon="pi pi-pencil"
+          [outlined]="true"
+          severity="info"
+        />
+        <p-button
+          (click)="delete($event, student)"
+          icon="pi pi-trash"
+          severity="danger"
+          [outlined]="true"
+        />
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
