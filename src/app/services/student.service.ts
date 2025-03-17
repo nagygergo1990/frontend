@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { log } from 'node:console';
 
 export interface Student {
   id: string;
@@ -15,17 +16,21 @@ export interface Student {
 export class StudentService {
   private apiUrl = 'http://localhost:3000/students';
 
-  constructor(private http: HttpClient) {}
+  constructor(private _HttpClient: HttpClient) {}
 
   getStudents(): Observable<Student[]> {
-    return this.http.get<Student[]>(this.apiUrl);
+    return this._HttpClient.get<Student[]>(this.apiUrl);
   }
 
   getStudentById(id: string): Observable<Student> {
-    return this.http.get<Student>(`${this.apiUrl}/${id}`);
+    return this._HttpClient.get<Student>(`${this.apiUrl}/${id}`);
   }
 
-  deleteStudentById(id: string): Observable<Student> {
-    return this.http.delete<Student>(`${this.apiUrl}/${id}`);
+  deleteStudentById(student: any): any {
+    console.log(student);
+
+    this._HttpClient
+      .delete<Student>(`${this.apiUrl}/${student.id}`)
+      .subscribe();
   }
 }

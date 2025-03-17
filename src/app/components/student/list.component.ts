@@ -6,7 +6,7 @@ import { TableComponent } from '../table/table.component';
 import { TableModule } from 'primeng/table';
 import { log } from 'console';
 import { CommonModule } from '@angular/common';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'student-list',
@@ -42,7 +42,9 @@ export class StudentListComponent implements OnInit {
 
   constructor(
     private _routes: ActivatedRoute,
-    private _studentService: StudentService
+    private _studentService: StudentService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -61,11 +63,12 @@ export class StudentListComponent implements OnInit {
    * @param event: JSON objektum
    */
   actionEmitter(event: any): void {
-    console.log(event);
-
     if (event.action == 'delete') {
-      this._studentService.deleteStudentById(event.selectedObject);
+      this._studentService.deleteStudentById(event);
+      this.list$ = this._studentService.getStudents();
     }
+    //   this._studentService.deleteStudentById(event);
+    // }
     if (event.action == 'modify') {
       // this._helperService.redirectTo(`/user/edit/${event.selectedObject.id}`);
     }

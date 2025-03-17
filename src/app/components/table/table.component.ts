@@ -16,6 +16,7 @@ import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { log } from 'node:console';
+import { Student } from '../../services/student.service';
 
 @Component({
   selector: 'rate-table',
@@ -46,7 +47,7 @@ export class TableComponent implements OnInit {
   /**
    * Selected object ID (for modify / delete)
    */
-  selectedObject: number | undefined;
+  selectedObject: Student | undefined;
 
   /**
    * Selected rows (checkbox)
@@ -72,75 +73,12 @@ export class TableComponent implements OnInit {
 
   //     this.event.emit({ selectedObject: objectId, action: action });
   //   }
-  delete(event: Event, id: any) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Are you sure that you want to proceed?',
-      header: 'Confirmation',
-      closable: true,
-      closeOnEscape: true,
-      icon: 'pi pi-exclamation-triangle',
-      rejectButtonProps: {
-        label: 'Cancel',
-        severity: 'secondary',
-        outlined: true,
-      },
-      acceptButtonProps: {
-        label: 'Save',
-      },
-      accept: () => {
-        this.event.emit({ selectedObject: id, action: 'delete' });
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Confirmed',
-          detail: 'You have accepted',
-        });
-      },
-      reject: () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Rejected',
-          detail: 'You have rejected',
-          life: 3000,
-        });
-      },
-    });
+  delete(id: any, name: any) {
+    this.event.emit({ name: name, id: id, action: 'delete' });
   }
 
-  edit(event: Event, id: any) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Are you sure that you want to proceed?',
-      header: 'Confirmation',
-      closable: true,
-      closeOnEscape: true,
-      icon: 'pi pi-exclamation-triangle',
-      rejectButtonProps: {
-        label: 'Cancel',
-        severity: 'secondary',
-        outlined: true,
-      },
-      acceptButtonProps: {
-        label: 'Save',
-      },
-      accept: () => {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Confirmed',
-          detail: 'You have accepted',
-        });
-      },
-      reject: () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Rejected',
-          detail: 'You have rejected',
-          life: 3000,
-        });
-      },
-    });
-  }
-
+  edit(id: any) {}
+  new() {}
   /**
    * Tábla globális kereső törlés.
    * @param uri
