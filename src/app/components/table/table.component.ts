@@ -77,8 +77,12 @@ export class TableComponent implements OnInit {
     this.event.emit({ name: name, id: id, action: 'delete' });
   }
 
-  edit(id: any) {}
-  new() {}
+  edit(id: any) {
+    this.event.emit({ id: id, action: 'edit' });
+  }
+  new() {
+    this.event.emit({ action: 'new' });
+  }
   /**
    * Tábla globális kereső törlés.
    * @param uri

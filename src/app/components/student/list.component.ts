@@ -7,7 +7,7 @@ import { TableModule } from 'primeng/table';
 import { log } from 'console';
 import { CommonModule } from '@angular/common';
 import { ConfirmationService, MessageService } from 'primeng/api';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'student-list',
   templateUrl: './list.component.html',
@@ -44,7 +44,8 @@ export class StudentListComponent implements OnInit {
     private _routes: ActivatedRoute,
     private _studentService: StudentService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -69,7 +70,14 @@ export class StudentListComponent implements OnInit {
     }
     //   this._studentService.deleteStudentById(event);
     // }
-    if (event.action == 'modify') {
+    if (event.action == 'new') {
+      this.router.navigate(['/students/', '-1']);
+      // this._helperService.redirectTo(`/user/edit/${event.selectedObject.id}`);
+    }
+    if (event.action == 'edit') {
+      console.log(event);
+
+      this.router.navigate(['/students/', event.id]);
       // this._helperService.redirectTo(`/user/edit/${event.selectedObject.id}`);
     }
   }

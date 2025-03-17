@@ -1,0 +1,18 @@
+ body {
+      background-color: #f8f9fa; /* Világosszürke háttér */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .custom-form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }

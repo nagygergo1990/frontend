@@ -22,6 +22,13 @@ export class StudentService {
     return this._HttpClient.get<Student[]>(this.apiUrl);
   }
 
+  setStudent(student: Student): Observable<Student> {
+    return this._HttpClient.post<Student>(this.apiUrl, student);
+  }
+  updateStudent(student: Student, id: string): Observable<Student> {
+    return this._HttpClient.put<Student>(`${this.apiUrl}/${id}`, student);
+  }
+
   getStudentById(id: string): Observable<Student> {
     return this._HttpClient.get<Student>(`${this.apiUrl}/${id}`);
   }

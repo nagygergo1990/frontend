@@ -1,0 +1,51 @@
+<body>
+  <div class="custom-form">
+    <div *ngIf="!isNew" class="form-group">
+      <div class="input-group">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-user"></i>
+          </p-inputgroup-addon>
+          <input
+            pInputText
+            [(ngModel)]="student.id"
+            placeholder="Id"
+            disabled
+          />
+        </p-inputgroup>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-user"></i>
+          </p-inputgroup-addon>
+          <input pInputText [(ngModel)]="student.name" placeholder="Név" />
+        </p-inputgroup>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-at"></i>
+          </p-inputgroup-addon>
+          <input pInputText [(ngModel)]="student.email" placeholder="E-mail" />
+        </p-inputgroup>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <p-button
+          (click)="emit()"
+          icon="pi pi-save"
+          severity="success"
+          [outlined]="true"
+          label="Mentés"
+        />
+      </div>
+    </div>
+  </div>
+</body>
