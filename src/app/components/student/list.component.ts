@@ -16,8 +16,6 @@ import { Router } from '@angular/router';
   providers: [MessageService],
 })
 export class StudentListComponent implements OnInit {
-  title: string = 'Felhasználó karbantartás';
-
   /**
    * Az adatokat fogadó változó.
    */

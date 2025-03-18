@@ -1,26 +1,6 @@
-<div class="card">
-  <h2>{{ title }}</h2>
-  <rate-table
-    (event)="actionEmitter($event)"
-    [data]="list$ | async"
-    [tableColumns]="columns"
-  >
-  </rate-table>
-</div>
-
-<!-- <p-table [value]="list$ | async" [tableStyle]="{ 'min-width': '50rem' }">
-  <ng-template #header>
-    <tr>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Category</th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-product>
-    <tr>
-      <td>{{ product.id }}</td>
-      <td>{{ product.name }}</td>
-      <td>{{ product.email }}</td>
-    </tr>
-  </ng-template>
-</p-table> -->
+<rate-table
+  (event)="actionEmitter($event)"
+  [data]="list$ | async"
+  [tableColumns]="columns"
+>
+</rate-table>

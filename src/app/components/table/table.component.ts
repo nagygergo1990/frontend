@@ -74,7 +74,30 @@ export class TableComponent implements OnInit {
   //     this.event.emit({ selectedObject: objectId, action: action });
   //   }
   delete(id: any, name: any) {
-    this.event.emit({ name: name, id: id, action: 'delete' });
+    this.confirmationService.confirm({
+      message: 'Biztos törölni szeretné ' + name + ' felhasználót?',
+      header: 'Confirmation',
+      closable: true,
+      closeOnEscape: true,
+      icon: 'pi pi-exclamation-triangle',
+      rejectButtonProps: {
+        label: 'Mégsem',
+        severity: 'secondary',
+        outlined: true,
+      },
+      acceptButtonProps: {
+        label: 'Törlés',
+      },
+      accept: () => {
+        this.event.emit({ name: name, id: id, action: 'delete' });
+
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Confirmed',
+          detail: 'Sikeres törlés',
+        });
+      },
+    });
   }
 
   edit(id: any) {

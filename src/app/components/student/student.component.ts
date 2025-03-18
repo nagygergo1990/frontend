@@ -3,7 +3,9 @@ import { FormComponent } from '../form/form.component';
 import { log } from 'node:console';
 import { Student, StudentService } from '../../services/student.service';
 import { Router } from '@angular/router';
-
+export function getPrerenderParams() {
+  return [{ id: '1' }, { id: '2' }, { id: '3' }];
+}
 @Component({
   selector: 'app-student',
   imports: [FormComponent],

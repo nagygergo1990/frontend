@@ -1,63 +1,68 @@
-<div grid="4">
-  <p-table
-    #dt
-    [(selection)]="selectedData"
-    [columns]="tableColumns"
-    [globalFilterFields]="tableColumns['fields']"
-    [globalFilterFields]="tableColumns"
-    [paginator]="true"
-    [rowHover]="true"
-    [rows]="10"
-    [showCurrentPageReport]="true"
-    [value]="data"
-    currentPageReportTemplate="Megjelenítve {first} - {last} / {totalRecords} tanuló"
-    dataKey="id"
-    responsiveLayout="scroll"
-  >
-    <ng-template pTemplate="caption">
-      <p-button
-        (click)="new()"
-        icon="pi pi-plus"
-        severity="success"
-        [outlined]="true"
-        label="Új felvitel"
-    /></ng-template>
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="col-10 col-md-8 col-lg-6 mt-10">
+    <h2>Tanuló karbantartó</h2>
 
-    <ng-template let-columns pTemplate="header">
-      <tr>
-        <th
-          *ngFor="let columns of tableColumns"
-          pSortableColumn="{{ tableColumns.field }}"
-        >
-          {{ columns.header }}
-          <p-sortIcon field="{{ columns.field }}"></p-sortIcon>
-        </th>
-        <th>Műveletek</th>
-      </tr>
-    </ng-template>
+    <p-table
+      #dt
+      [(selection)]="selectedData"
+      [columns]="tableColumns"
+      [globalFilterFields]="tableColumns['fields']"
+      [globalFilterFields]="tableColumns"
+      [paginator]="true"
+      [rowHover]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      [value]="data"
+      currentPageReportTemplate="Megjelenítve {first} - {last} / {totalRecords} tanuló"
+      dataKey="id"
+      responsiveLayout="scroll"
+    >
+      <ng-template pTemplate="caption">
+        <p-button
+          (click)="new()"
+          icon="pi pi-plus"
+          severity="success"
+          [outlined]="true"
+          label="Új felvitel"
+      /></ng-template>
 
-    <ng-template let-columns="columns" let-student pTemplate="body">
-      <tr>
-        <td *ngFor="let columns of tableColumns">
-          {{ student[columns.field] }}
-        </td>
-        <td>
-          <p-toast />
-          <p-confirmdialog />
-          <p-button
-            (click)="edit(student.id)"
-            icon="pi pi-pencil"
-            [outlined]="true"
-            severity="info"
-          />
-          <p-button
-            (click)="delete(student.id, student.name)"
-            icon="pi pi-trash"
-            severity="danger"
-            [outlined]="true"
-          />
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+      <ng-template let-columns pTemplate="header">
+        <tr>
+          <th
+            *ngFor="let columns of tableColumns"
+            pSortableColumn="{{ tableColumns.field }}"
+          >
+            {{ columns.header }}
+            <p-sortIcon field="{{ columns.field }}"></p-sortIcon>
+          </th>
+          <th>Műveletek</th>
+        </tr>
+      </ng-template>
+
+      <ng-template let-columns="columns" let-student pTemplate="body">
+        <tr>
+          <td *ngFor="let columns of tableColumns">
+            {{ student[columns.field] }}
+          </td>
+          <td>
+            <p-toast />
+            <p-confirmdialog />
+            <p-button
+              (click)="edit(student.id)"
+              icon="pi pi-pencil"
+              [outlined]="true"
+              severity="info"
+            />
+            ‎
+            <p-button
+              (click)="delete(student.id, student.name)"
+              icon="pi pi-trash"
+              severity="danger"
+              [outlined]="true"
+            />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 </div>
